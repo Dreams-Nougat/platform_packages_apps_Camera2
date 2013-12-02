@@ -100,7 +100,7 @@ public class CameraSettings {
         // When launching the camera app first time, we will set the video quality
         // to the first one (i.e. highest quality) in the supported list
         List<String> supported = getSupportedVideoQuality(cameraId);
-        if (supported == null) {
+        if (supported == null || supported.isEmpty()) {
             Log.e(TAG, "No supported video quality is found");
             return defaultQuality;
         }
