@@ -466,6 +466,12 @@ public class PhotoUI implements PieListener,
     }
 
     public void showLocationDialog() {
+        if (mLocationDialog != null)
+        {
+            Log.v(TAG, "Location dialog already visible, not showing");
+            return;
+        }
+
         mLocationDialog = new AlertDialog.Builder(mActivity)
                 .setTitle(R.string.remember_location_title)
                 .setMessage(R.string.remember_location_prompt)
