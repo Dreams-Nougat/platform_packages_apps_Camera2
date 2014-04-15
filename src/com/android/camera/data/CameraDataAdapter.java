@@ -133,43 +133,55 @@ public class CameraDataAdapter implements LocalDataAdapter {
     // TODO: put the database query on background thread
     @Override
     public void addNewVideo(ContentResolver cr, Uri uri) {
-        Cursor c = cr.query(uri,
+        Cursor c = null;
+        try {
+            c = cr.query(uri,
                 LocalMediaData.VideoData.QUERY_PROJECTION,
                 MediaStore.Images.Media.DATA + " like ? ", CAMERA_PATH,
                 LocalMediaData.VideoData.QUERY_ORDER);
-        if (c == null || !c.moveToFirst()) {
-            return;
-        }
-        int pos = findDataByContentUri(uri);
-        LocalMediaData.VideoData newData = LocalMediaData.VideoData.buildFromCursor(c);
-        if (pos != -1) {
-            // A duplicate one, just do a substitute.
-            updateData(pos, newData);
-        } else {
-            // A new data.
-            insertData(newData);
+            if (c == null || !c.moveToFirst()) {
+                return;
+            }
+            int pos = findDataByContentUri(uri);
+            LocalMediaData.VideoData newData = LocalMediaData.VideoData.buildFromCursor(c);
+            if (pos != -1) {
+                // A duplicate one, just do a substitute.
+                updateData(pos, newData);
+            } else {
+                // A new data.
+                insertData(newData);
+            }
+        } finally {
+            if (c != null)
+                c.close();
         }
     }
 
     // TODO: put the database query on background thread
     @Override
     public void addNewPhoto(ContentResolver cr, Uri uri) {
-        Cursor c = cr.query(uri,
+        Cursor c = null;
+        try {
+            c = cr.query(uri,
                 LocalMediaData.PhotoData.QUERY_PROJECTION,
                 MediaStore.Images.Media.DATA + " like ? ", CAMERA_PATH,
                 LocalMediaData.PhotoData.QUERY_ORDER);
-        if (c == null || !c.moveToFirst()) {
-            return;
-        }
-        int pos = findDataByContentUri(uri);
-        LocalMediaData.PhotoData newData = LocalMediaData.PhotoData.buildFromCursor(c);
-        if (pos != -1) {
-            // a duplicate one, just do a substitute.
-            Log.v(TAG, "found duplicate photo");
-            updateData(pos, newData);
-        } else {
-            // a new data.
-            insertData(newData);
+            if (c == null || !c.moveToFirst()) {
+                return;
+            }
+            int pos = findDataByContentUri(uri);
+            LocalMediaData.PhotoData newData = LocalMediaData.PhotoData.buildFromCursor(c);
+            if (pos != -1) {
+                // a duplicate one, just do a substitute.
+                Log.v(TAG, "found duplicate photo");
+                updateData(pos, newData);
+            } else {
+                // a new data.
+                insertData(newData);
+            }
+        } finally {
+            if (c != null)
+                c.close();
         }
     }
 

@@ -451,13 +451,19 @@ public abstract class LocalMediaData implements LocalData {
 
         @Override
         public LocalData refresh(ContentResolver resolver) {
-            Cursor c = resolver.query(
+            Cursor c = null;
+            try {
+                c = resolver.query(
                     getContentUri(), QUERY_PROJECTION, null, null, null);
-            if (c == null || !c.moveToFirst()) {
-                return null;
+                if (c == null || !c.moveToFirst()) {
+                    return null;
+                }
+                PhotoData newData = buildFromCursor(c);
+                return newData;
+            } finally {
+                if (c != null)
+                    c.close();
             }
-            PhotoData newData = buildFromCursor(c);
-            return newData;
         }
 
         @Override
@@ -730,13 +736,19 @@ public abstract class LocalMediaData implements LocalData {
 
         @Override
         public LocalData refresh(ContentResolver resolver) {
-            Cursor c = resolver.query(
+            Cursor c = null;
+            try {
+                c = resolver.query(
                     getContentUri(), QUERY_PROJECTION, null, null, null);
-            if (c == null || !c.moveToFirst()) {
-                return null;
+                if (c == null || !c.moveToFirst()) {
+                    return null;
+                }
+                VideoData newData = buildFromCursor(c);
+                return newData;
+            } finally {
+                if ( c != null)
+                    c.close();
             }
-            VideoData newData = buildFromCursor(c);
-            return newData;
         }
 
         @Override
