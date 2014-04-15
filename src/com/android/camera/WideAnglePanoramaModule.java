@@ -534,6 +534,8 @@ public class WideAnglePanoramaModule
         mOrientationManager.lockOrientation();
         int degrees = CameraUtil.getDisplayRotation(mActivity);
         int cameraId = CameraHolder.instance().getBackCameraId();
+        // If there is no back camera, use the front camera.
+        if (cameraId == -1) cameraId = CameraHolder.instance().getFrontCameraId();
         int orientation = CameraUtil.getDisplayOrientation(degrees, cameraId);
         mUI.setProgressOrientation(orientation);
     }
