@@ -1,0 +1,18 @@
+Revision: 123c7658e3f786f94d2f329c6f2bbb2a4954411a
+Patch-set: 1
+File: src/com/android/camera/ui/ModuleSwitcher.java
+
+112:8-113:23
+Wed Jul 09 22:27:54 2014 +0000
+Author: Ruben Brunk <1042691@85c56323-6fa9-3386-8a01-6480fb634889>
+UUID: f9f75445_d731c422
+Bytes: 85
+Please use braces even for single-line if statements to match surrounding code style.
+
+121:12-122:25
+Wed Jul 09 22:27:54 2014 +0000
+Author: Ruben Brunk <1042691@85c56323-6fa9-3386-8a01-6480fb634889>
+UUID: 995e582a_6ad33775
+Bytes: 85
+Please use braces even for single-line if statements to match surrounding code style.
+
