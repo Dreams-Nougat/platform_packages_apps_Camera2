@@ -213,8 +213,8 @@ class ExifOutputStream extends FilterOutputStream {
         if (DEBUG) {
             Log.v(TAG, "Writing exif data...");
         }
-        ArrayList<ExifTag> nullTags = stripNullValueTags(mExifData);
         createRequiredIfdAndTag();
+        ArrayList<ExifTag> nullTags = stripNullValueTags(mExifData);
         int exifSize = calculateAllOffset();
         if (exifSize + 8 > MAX_EXIF_SIZE) {
             throw new IOException("Exif header is too large (>64Kb)");
@@ -242,7 +242,13 @@ class ExifOutputStream extends FilterOutputStream {
 
     private ArrayList<ExifTag> stripNullValueTags(ExifData data) {
         ArrayList<ExifTag> nullTags = new ArrayList<ExifTag>();
+        if (data.getAllTags() == null) {
+            return nullTags;
+        }
         for(ExifTag t : data.getAllTags()) {
+            if (t == null) {
+               continue;
+            }
             if (t.getValue() == null && !ExifInterface.isOffsetTag(t.getTagId())) {
                 data.removeTag(t.getTagId(), t.getIfd());
                 nullTags.add(t);
