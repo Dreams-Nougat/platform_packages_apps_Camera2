@@ -1,0 +1,18 @@
+Revision: 14f9391416015d258fe2b697d72df9b2acfbe1b4
+Patch-set: 1
+File: src/com/android/camera/exif/ExifOutputStream.java
+
+217
+Thu Aug 21 22:20:10 2014 +0000
+Author: Alan Newberger <1042722@85c56323-6fa9-3386-8a01-6480fb634889>
+UUID: f3685504_95b144cb
+Bytes: 296
+only purpose moving this would be if tags we created in createRequiredIfdAndTag were null -- and the only way that would occur is if we had a mismatch in ExifInterface tag constants and tags we're adding in createRequiredIfdAndTag. Please elaborate how null tags are being added in your use case.
+
+245
+Thu Aug 21 22:20:10 2014 +0000
+Author: Alan Newberger <1042722@85c56323-6fa9-3386-8a01-6480fb634889>
+UUID: f3685504_d589fc16
+Bytes: 80
+unnecessary, this should never return null, please elaborate why this was added.
+
