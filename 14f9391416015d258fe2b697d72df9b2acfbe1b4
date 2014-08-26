@@ -9,10 +9,26 @@ UUID: f3685504_95b144cb
 Bytes: 296
 only purpose moving this would be if tags we created in createRequiredIfdAndTag were null -- and the only way that would occur is if we had a mismatch in ExifInterface tag constants and tags we're adding in createRequiredIfdAndTag. Please elaborate how null tags are being added in your use case.
 
+217
+Tue Aug 26 06:21:53 2014 +0000
+Author: Jun Tian <1006838@85c56323-6fa9-3386-8a01-6480fb634889>
+Parent: f3685504_95b144cb
+UUID: 9382b917_1010ccb4
+Bytes: 279
+In stripNullValueTags, we got data.getAllTags as null which is invalid when accessing getValue on it. We exchanged these 2 lines for confirming mIfdDatas is not empty. As you told, we'd better check why mExifData.getAllTags return null that caused the stripNullValueTags crashes.
+
 245
 Thu Aug 21 22:20:10 2014 +0000
 Author: Alan Newberger <1042722@85c56323-6fa9-3386-8a01-6480fb634889>
 UUID: f3685504_d589fc16
 Bytes: 80
 unnecessary, this should never return null, please elaborate why this was added.
+
+245
+Tue Aug 26 06:21:53 2014 +0000
+Author: Jun Tian <1006838@85c56323-6fa9-3386-8a01-6480fb634889>
+Parent: f3685504_d589fc16
+UUID: 9382b917_700f4897
+Bytes: 235
+We got the data.getAllTags null in the emulator camera. Therefore, we double checked it here. But if the data in mIfdDatas is empty in the getAllTags function, the code still run into "return null"? Is any code in other place confused?
 
