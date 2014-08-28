@@ -294,7 +294,10 @@ public class VideoModule extends CameraModule
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (action.equals(Intent.ACTION_MEDIA_EJECT)) {
+            Uri data = intent.getData();
+            if (action.equals(Intent.ACTION_MEDIA_EJECT) &&
+                ((mCurrentVideoUri != null && mCurrentVideoUri.getPath().contains(data.getPath())) ||
+                (mVideoFilename != null && mVideoFilename.contains(data.getPath())))) {
                 stopVideoRecording();
             } else if (action.equals(Intent.ACTION_MEDIA_SCANNER_STARTED)) {
                 Toast.makeText(mActivity,
