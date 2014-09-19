@@ -1,0 +1,19 @@
+Revision: fb212089e889940e30c534383d84d035b5fc356d
+Patch-set: 1
+File: src/com/android/camera/ui/FilmStripGestureRecognizer.java
+
+70:20-74:76
+Fri Sep 19 16:44:22 2014 +0000
+Author: shkong <1012548@85c56323-6fa9-3386-8a01-6480fb634889>
+UUID: 5064b799_23c1413c
+Bytes: 74
+final float hscroll = event.get.....
+final float vscroll = -event.get.....
+
+76:20-77:21
+Fri Sep 19 16:44:22 2014 +0000
+Author: shkong <1012548@85c56323-6fa9-3386-8a01-6480fb634889>
+UUID: d057c7b2_2a36fbf8
+Bytes: 24
+This should be one line.
+
