@@ -734,7 +734,7 @@ public class PieRenderer extends OverlayRenderer
         x = x - mPieCenterX;
         float y1 = mSliceCenterY - getLevel() * mRadiusInc - y;
         float y2 = mArcCenterY - getLevel() * mRadiusInc - y;
-        res.y = (float) Math.sqrt(x * x + y2 * y2);
+        res.y = (float) Math.hypot(x, y2);
         if (x != 0) {
             res.x = (float) Math.atan2(y1,  x);
             if (res.x < 0) {
