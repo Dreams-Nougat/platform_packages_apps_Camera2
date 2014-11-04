@@ -1,0 +1,8 @@
+Verified+1: Deckard Autoverifier <deckard@android.com>
+Code-Review+2: Chih-Chung Chang <chihchung@google.com>
+Verified+1: Jean-Baptiste Queru <jbq@android.com>
+Submitted-by: Jean-Baptiste Queru <jbq@android.com>
+Submitted-at: Tue, 01 May 2012 12:52:33 +0000
+Reviewed-on: https://android-review.googlesource.com/35650
+Project: platform/packages/apps/Camera2
+Branch: refs/heads/master
