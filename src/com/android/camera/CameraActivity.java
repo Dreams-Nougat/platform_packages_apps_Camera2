@@ -1743,7 +1743,7 @@ public class CameraActivity extends QuickActivity
         mCurrentModule.onPreviewVisibilityChanged(visibility);
     }
 
-    private void updatePreviewRendering(int visibility) {
+    /* private */ void updatePreviewRendering(int visibility) {
         if (visibility == ModuleController.VISIBILITY_HIDDEN) {
             mCameraAppUI.pausePreviewRendering();
         } else {

@@ -1714,6 +1714,7 @@ public class PhotoModule
             mActivity.getCameraProvider().releaseCamera(mCameraDevice.getCameraId());
             mCameraDevice = null;
             setCameraState(PREVIEW_STOPPED);
+            mActivity.updatePreviewRendering(ModuleController.VISIBILITY_HIDDEN);
             mFocusManager.onCameraReleased();
         }
     }

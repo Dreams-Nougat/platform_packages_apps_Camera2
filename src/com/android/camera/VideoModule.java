@@ -1007,6 +1007,7 @@ public class VideoModule extends CameraModule
         }
         mCameraDevice.setZoomChangeListener(null);
         mActivity.getCameraProvider().releaseCamera(mCameraDevice.getCameraId());
+        mActivity.updatePreviewRendering(ModuleController.VISIBILITY_HIDDEN);
         mCameraDevice = null;
         mPreviewing = false;
         mSnapshotInProgress = false;
