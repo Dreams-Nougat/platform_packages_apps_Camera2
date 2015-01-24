@@ -1827,6 +1827,7 @@ public class PhotoModule
             mCameraDevice.startPreviewWithCallback(new Handler(Looper.getMainLooper()),
                     startPreviewCallback);
         }
+        mActivity.updatePreviewVisibility();
     }
 
     @Override

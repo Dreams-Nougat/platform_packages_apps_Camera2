@@ -1732,7 +1732,7 @@ public class CameraActivity extends QuickActivity
      * Call this whenever the mode drawer or filmstrip change the visibility
      * state.
      */
-    private void updatePreviewVisibility() {
+    /* package */ void updatePreviewVisibility() {
         if (mCurrentModule == null) {
             return;
         }

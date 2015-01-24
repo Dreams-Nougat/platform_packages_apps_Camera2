@@ -962,6 +962,7 @@ public class VideoModule extends CameraModule
                 }
             });
             mPreviewing = true;
+            mActivity.updatePreviewVisibility();
         } catch (Throwable ex) {
             closeCamera();
             throw new RuntimeException("startPreview failed", ex);
