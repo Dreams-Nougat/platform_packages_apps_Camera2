@@ -900,13 +900,13 @@ public class CameraUtil {
     private static void getGaussianMask(float[] mask) {
         int len = mask.length;
         int mid = len / 2;
-        float sigma = len;
+        double sigma = len;
         float sum = 0;
         for (int i = 0; i <= mid; i++) {
-            float ex = FloatMath.exp(-(i - mid) * (i - mid) / (mid * mid))
+            double ex = Math.exp(-(i - mid) * (i - mid) / (mid * mid))
                     / (2 * sigma * sigma);
             int symmetricIndex = len - 1 - i;
-            mask[i] = ex;
+            mask[i] = (float) ex;
             mask[symmetricIndex] = ex;
             sum += mask[i];
             if (i != symmetricIndex) {
