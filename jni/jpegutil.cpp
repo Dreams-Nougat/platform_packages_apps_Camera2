@@ -165,7 +165,7 @@ int jpegutil::compress(const Plane& yPlane, const Plane& cbPlane,
     longjmp(myerr->setjmp_buffer, 1);
   };
 
-  cinfo.err = (struct jpeg_error_mgr*)&err;
+  cinfo.err = &err.pub;
 
   // Set the setjmp point to return to in case of error.
   if (setjmp(err.setjmp_buffer)) {
