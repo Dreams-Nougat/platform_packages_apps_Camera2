@@ -271,7 +271,8 @@ public class Storage {
            byte[] jpeg, int width, int height, String mimeType) throws IOException {
         String path = generateFilepath(title, mimeType);
         writeFile(path, jpeg, exif);
-        return updateImage(imageUri, resolver, title, date, location, orientation, jpeg.length, path,
+        File f = new File(path);
+        return updateImage(imageUri, resolver, title, date, location, orientation, f.length(), path,
                 width, height, mimeType);
     }
 
@@ -393,7 +394,7 @@ public class Storage {
 
     /** Updates the image values in MediaStore. */
     private static Uri updateImage(Uri imageUri, ContentResolver resolver, String title,
-            long date, Location location, int orientation, int jpegLength,
+            long date, Location location, int orientation, long jpegLength,
             String path, int width, int height, String mimeType) {
 
         ContentValues values =
