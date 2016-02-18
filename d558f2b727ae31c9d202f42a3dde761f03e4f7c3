@@ -1,0 +1,18 @@
+Revision: d558f2b727ae31c9d202f42a3dde761f03e4f7c3
+Patch-set: 2
+File: src/com/android/camera/Storage.java
+
+274
+Thu Feb 18 18:36:42 2016 +0000
+Author: Eino-Ville Talvala <1010050@85c56323-6fa9-3386-8a01-6480fb634889>
+UUID: e2199973_d338b4d4
+Bytes: 117
+writeFile already returns the size of the file written, so please just use that instead of allocating another object.
+
+274
+Thu Feb 18 18:36:42 2016 +0000
+Author: Eino-Ville Talvala <1010050@85c56323-6fa9-3386-8a01-6480fb634889>
+UUID: e2199973_b345383f
+Bytes: 119
+writeFile already returns the length of the file written, so please just use that instead of allocating another object.
+
