@@ -405,7 +405,6 @@ public class PhotoModule
 
         mQuickCapture = mActivity.getIntent().getBooleanExtra(EXTRA_QUICK_CAPTURE, false);
         mHeadingSensor = new HeadingSensor(AndroidServices.instance().provideSensorManager());
-        mCountdownSoundPlayer = new SoundPlayer(mAppController.getAndroidContext());
 
         try {
             mOneCameraManager = OneCameraModule.provideOneCameraManager();
@@ -1439,6 +1438,8 @@ public class PhotoModule
     public void resume() {
         mPaused = false;
 
+        mCountdownSoundPlayer = new SoundPlayer(mAppController.getAndroidContext());
+
         mCountdownSoundPlayer.loadSound(R.raw.timer_final_second);
         mCountdownSoundPlayer.loadSound(R.raw.timer_increment);
         if (mFocusManager != null) {
@@ -1579,11 +1580,14 @@ public class PhotoModule
 
         SettingsManager settingsManager = mActivity.getSettingsManager();
         settingsManager.removeListener(this);
+
+        if (mCountdownSoundPlayer != null) {
+            mCountdownSoundPlayer.release();
+        }
     }
 
     @Override
     public void destroy() {
-        mCountdownSoundPlayer.release();
     }
 
     @Override
