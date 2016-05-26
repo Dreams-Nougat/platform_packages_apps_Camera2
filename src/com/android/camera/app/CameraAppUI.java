@@ -1515,6 +1515,16 @@ public class CameraAppUI implements ModeListView.ModeSwitchListener,
         mModeOptionsOverlay.setToggleClickable(false);
     }
 
+    public void disableCameraToggleButton() {
+        mController.getButtonManager().disableButtonClick(ButtonManager.BUTTON_CAMERA);
+    }
+
+    public void enableCameraToggleButton() {
+        if (!mDisableAllUserInteractions) {
+            mController.getButtonManager().enableButtonClick(ButtonManager.BUTTON_CAMERA);
+        }
+    }
+
     public void setDisableAllUserInteractions(boolean disable) {
         if (disable) {
             disableModeOptions();
@@ -2246,6 +2256,7 @@ public class CameraAppUI implements ModeListView.ModeSwitchListener,
             @Override
             public void onStateChanged(int state) {
                 mController.getButtonManager().disableButton(conflictingButton);
+                setShutterButtonEnabled(false);
             }
         };
     }

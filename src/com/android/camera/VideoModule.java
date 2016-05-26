@@ -696,6 +696,7 @@ public class VideoModule extends CameraModule
         if (stop) {
             // CameraAppUI mishandles mode option enable/disable
             // for video, override that
+            mAppController.getCameraAppUI().enableCameraToggleButton();
             mAppController.getCameraAppUI().enableModeOptions();
             onStopVideoRecording();
         } else {
@@ -725,6 +726,9 @@ public class VideoModule extends CameraModule
     @Override
     public void onShutterButtonFocus(boolean pressed) {
         // TODO: Remove this when old camera controls are removed from the UI.
+        if(pressed && !mMediaRecorderRecording){
+            mAppController.getCameraAppUI().disableCameraToggleButton();
+        }
     }
 
     private void readVideoPreferences() {
@@ -1043,6 +1047,7 @@ public class VideoModule extends CameraModule
                 }
             case KeyEvent.KEYCODE_DPAD_CENTER:
                 if (event.getRepeatCount() == 0) {
+                    onShutterButtonFocus(true);
                     onShutterButtonClick();
                     return true;
                 }
@@ -1842,6 +1847,14 @@ public class VideoModule extends CameraModule
         if (mFocusManager != null) {
             mFocusManager.removeMessages();
         }
+
+        boolean stop = mMediaRecorderRecording;
+
+        if (stop) {
+            mAppController.getCameraAppUI().enableModeOptions();
+            onStopVideoRecording();
+        }
+
         closeCamera();
         requestCamera(mCameraId);
 
