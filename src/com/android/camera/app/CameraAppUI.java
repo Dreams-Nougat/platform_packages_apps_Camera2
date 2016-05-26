@@ -2292,4 +2292,15 @@ public class CameraAppUI implements ModeListView.ModeSwitchListener,
     public int getFilmstripVisibility() {
         return mFilmstripLayout.getVisibility();
     }
+
+    /*
+     * Animate just once.
+     */
+    public void animateBottomBarToVideoStop(int fromId, int toId) {
+        mBottomBar.animateToVideoStop(fromId, toId);
+    }
+
+    public void animateBottomBarToFullSize(int fromId, int toId) {
+        mBottomBar.animateToFullSize(fromId, toId);
+    }
 }

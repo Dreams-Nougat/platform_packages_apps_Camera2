@@ -1418,7 +1418,8 @@ public class VideoModule extends CameraModule
                     // A special case of mode options closing: during capture it should
                     // not be possible to change mode state.
                     mAppController.getCameraAppUI().hideModeOptions();
-                    mAppController.getCameraAppUI().animateBottomBarToVideoStop(R.drawable.ic_stop);
+                    mAppController.getCameraAppUI().animateBottomBarToVideoStop(mShutterIconId,
+                            R.drawable.ic_stop);
                     mUI.showRecordingUI(true);
 
                     setFocusParameters();
@@ -1530,7 +1531,8 @@ public class VideoModule extends CameraModule
         releaseMediaRecorder();
 
         mAppController.getCameraAppUI().showModeOptions();
-        mAppController.getCameraAppUI().animateBottomBarToFullSize(mShutterIconId);
+        mAppController.getCameraAppUI().animateBottomBarToFullSize(R.drawable.ic_stop,
+                mShutterIconId);
         if (!mPaused && mCameraDevice != null) {
             setFocusParameters();
             mCameraDevice.lock();

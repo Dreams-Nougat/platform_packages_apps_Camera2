@@ -528,4 +528,34 @@ public class BottomBar extends FrameLayout {
         mShutterButton.setImageDrawable(transitionDrawable);
         transitionDrawable.startTransition(CIRCLE_ANIM_DURATION_MS);
     }
+
+
+    /*
+     * Animate just once.
+     */
+    public void animateToVideoStop(int fromId, int toId) {
+        if (mOverLayBottomBar && mAnimatedCircleDrawable != null) {
+            mAnimatedCircleDrawable.animateToSmallRadius();
+            mDrawCircle = true;
+        }
+
+        TransitionDrawable transitionDrawable = crossfadeDrawable(
+                getResources().getDrawable(fromId),
+                getResources().getDrawable(toId));
+        mShutterButton.setImageDrawable(transitionDrawable);
+        transitionDrawable.startTransition(CIRCLE_ANIM_DURATION_MS);
+    }
+
+    public void animateToFullSize(int fromId, int toId) {
+        if (mDrawCircle && mAnimatedCircleDrawable != null) {
+            mAnimatedCircleDrawable.animateToFullSize();
+            mDrawCircle = false;
+        }
+
+        TransitionDrawable transitionDrawable = crossfadeDrawable(
+                getResources().getDrawable(fromId),
+                getResources().getDrawable(toId));
+        mShutterButton.setImageDrawable(transitionDrawable);
+        transitionDrawable.startTransition(CIRCLE_ANIM_DURATION_MS);
+    }
 }
