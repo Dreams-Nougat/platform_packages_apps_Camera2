@@ -496,13 +496,13 @@ public class ButtonManager implements SettingsManager.OnSettingChangedListener {
         } else {
             button = getButtonOrError(buttonId);
         }
+        button.setTag(R.string.tag_enabled_id, buttonId);
         if (!button.isEnabled()) {
             button.setEnabled(true);
             if (mListener != null) {
                 mListener.onButtonEnabledChanged(this, buttonId);
             }
         }
-        button.setTag(R.string.tag_enabled_id, buttonId);
     }
 
     /**
